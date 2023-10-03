@@ -19,7 +19,7 @@ namespace Controle_de_Contatos.Controllers
             return View();
         }
 
-        public IActionResult ExcluirContato()
+        public IActionResult ExcluirContatoConfirmacao()
         {
             return View();
         }
