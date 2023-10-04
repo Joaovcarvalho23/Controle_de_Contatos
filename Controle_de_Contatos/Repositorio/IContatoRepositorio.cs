@@ -4,6 +4,8 @@ namespace Controle_de_Contatos.Repositorio
 {
     public interface IContatoRepositorio
     {
+        List<ContatoModel> BuscarTodosContatos();
+
         ContatoModel Adicionar(ContatoModel contato);
     }
 }

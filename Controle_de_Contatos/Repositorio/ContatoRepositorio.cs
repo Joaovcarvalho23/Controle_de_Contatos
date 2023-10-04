@@ -12,6 +12,11 @@ namespace Controle_de_Contatos.Repositorio
             _bancoDeDadosContext = bancoDeDadosContext;
         }
 
+        public List<ContatoModel> BuscarTodosContatos()
+        {
+            return _bancoDeDadosContext.TabelaContatos.ToList();
+        }
+
 
         public ContatoModel Adicionar(ContatoModel contato) //gravar no banco de dados. Porém, quem vai gravar propriamente dito é o contexto, que está dentor de Data. Então, esse contexto deve ser injetado para dentro do ContatoRepositorio 
         {
