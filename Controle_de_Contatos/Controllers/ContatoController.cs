@@ -27,9 +27,10 @@ namespace Controle_de_Contatos.Controllers
             return View();
         }
 
-        public IActionResult EditarContato()
+        public IActionResult EditarContato(int id)
         {
-            return View();
+            ContatoModel contato = _contatoRepositorio.BuscarPorId(id);
+            return View(contato);
         }
 
         public IActionResult ExcluirContatoConfirmacao()

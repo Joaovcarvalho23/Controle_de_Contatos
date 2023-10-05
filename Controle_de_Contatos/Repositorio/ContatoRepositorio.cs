@@ -12,6 +12,13 @@ namespace Controle_de_Contatos.Repositorio
             _bancoDeDadosContext = bancoDeDadosContext;
         }
 
+        //Métodos
+        public ContatoModel BuscarPorId(int id)
+        {
+            return _bancoDeDadosContext.TabelaContatos.FirstOrDefault(o => o.Id == id);
+        }
+
+
         public List<ContatoModel> BuscarTodosContatos()
         {
             return _bancoDeDadosContext.TabelaContatos.ToList();
