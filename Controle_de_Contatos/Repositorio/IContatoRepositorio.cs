@@ -9,5 +9,7 @@ namespace Controle_de_Contatos.Repositorio
         List<ContatoModel> BuscarTodosContatos();
 
         ContatoModel Adicionar(ContatoModel contato);
+
+        ContatoModel Atualizar(ContatoModel contato);
     }
 }

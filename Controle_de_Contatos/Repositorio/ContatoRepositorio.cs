@@ -32,5 +32,22 @@ namespace Controle_de_Contatos.Repositorio
 
             return contato;
         }
+
+        public ContatoModel Atualizar(ContatoModel contato)
+        {
+            ContatoModel contatoDB = BuscarPorId(contato.Id);
+
+            if (contatoDB == null)
+                throw new Exception("Ocorreu um erro na atualização do contato");
+
+            contatoDB.Name = contato.Name;
+            contatoDB.Email = contato.Email;
+            contatoDB.Celular = contato.Celular;
+
+            _bancoDeDadosContext.TabelaContatos.Update(contatoDB);
+            _bancoDeDadosContext.SaveChanges();
+
+            return contatoDB;
+        }
     }
 }
