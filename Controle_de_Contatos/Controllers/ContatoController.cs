@@ -60,13 +60,22 @@ namespace Controle_de_Contatos.Controllers
         [HttpPost]
         public IActionResult Alterar(ContatoModel contato)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _contatoRepositorio.Atualizar(contato);
+                if (ModelState.IsValid)
+                {
+                    _contatoRepositorio.Atualizar(contato);
+                    TempData["MensagemSucesso"] = "Contato aletrado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View("EditarContato", contato);
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemFalha"] = $"Ocorreu um erro ao editar o contato :( Detalhe do erro: {ex.Message}";
                 return RedirectToAction("Index");
             }
-
-            return View("EditarContato", contato);
         }
 
 
@@ -79,9 +88,17 @@ namespace Controle_de_Contatos.Controllers
 
         public IActionResult ExcluirContato(int id)
         {
-            _contatoRepositorio.Deletar(id);
-
-            return RedirectToAction("Index");
+            try
+            {
+                _contatoRepositorio.Deletar(id);
+                TempData["MensagemSucesso"] = "Contato excluído com sucesso!";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemFalha"] = $"Ocorreu um erro ao deletar o contato. Detalhe do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }
