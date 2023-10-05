@@ -23,7 +23,6 @@ namespace Controle_de_Contatos.Controllers
         }
 
 
-
         public IActionResult CriarContato()
         {
             return View();
@@ -32,9 +31,13 @@ namespace Controle_de_Contatos.Controllers
         [HttpPost]
         public IActionResult CriarContato(ContatoModel contato)
         {
-            _contatoRepositorio.Adicionar(contato);
+            if (ModelState.IsValid)
+            {
+                _contatoRepositorio.Adicionar(contato);
+                return RedirectToAction("Index");
+            }
 
-            return RedirectToAction("Index");
+            return View(contato);
         }
 
 
