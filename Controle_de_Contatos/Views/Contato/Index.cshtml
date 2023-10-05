@@ -6,16 +6,24 @@
 
 <div class="text-center">
 
-    <div class="alert alert-success" role="alert">
-        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
-        This is a success alert—check it out!
-    </div>
+    @if(TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
 
-    <div class="alert alert-danger" role="alert">
-        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
-        This is a danger alert—check it out!
-    </div>
+    @if (TempData["MensagemFalha"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
+            @TempData["MensagemFalha"]
+        </div>
+    }
 
+    <br />
+  
     <h1 class="display-4"> Lista de contatos</h1>
 
     <table class="table">
