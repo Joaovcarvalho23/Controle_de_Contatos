@@ -11,5 +11,7 @@ namespace Controle_de_Contatos.Repositorio
         ContatoModel Adicionar(ContatoModel contato);
 
         ContatoModel Atualizar(ContatoModel contato);
+
+        bool Deletar(int id);
     }
 }
