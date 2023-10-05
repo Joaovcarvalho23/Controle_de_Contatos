@@ -13,16 +13,19 @@
     <div class="form-group">
         <label for="nome">Nome do usuário</label>
         <input type="text" asp-for="Name" class="form-control" placeholder="Digite o nome do contato">
+        @Html.ValidationMessageFor(o => o.Name)
     </div><br />
 
     <div class="form-group">
         <label for="email">Email do usuário</label>
         <input type="text" asp-for="Email" class="form-control" placeholder="Digite o email do contato">
+        @Html.ValidationMessageFor(o => o.Email)
     </div><br />
 
     <div class="form-group">
         <label for="celular">Celular do usuário</label>
         <input type="text" asp-for="Celular" class="form-control" placeholder="Digite o celular do contato">
+        @Html.ValidationMessageFor(o => o.Celular)
     </div><br />
 
     <button type="submit" class="btn btn-warning col-12">Editar</button><p></p>
