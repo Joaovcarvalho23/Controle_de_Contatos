@@ -9,5 +9,8 @@ namespace Controle_de_Contatos.Models
         public string? Email { get; set; }
         public string? Login { get; set;}
         public PerfilEnum Perfil { get; set; }
+        public string? Senha { get; set;}
+        public DateTime DataDeCadastro { get; set; }
+        public DateTime? DataAtualizacao { get; set; }
     }
 }
