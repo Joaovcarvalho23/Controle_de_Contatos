@@ -11,5 +11,7 @@ namespace Controle_de_Contatos.Data
         }
 
         public DbSet<ContatoModel> TabelaContatos { get; set; }
+
+        public DbSet<UsuarioModel> TabelaUsuarios {  get; set; }
     }
 }
