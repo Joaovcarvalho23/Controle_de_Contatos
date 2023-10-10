@@ -30,6 +30,7 @@ namespace Controle_de_Contatos.Repositorio
         
         public UsuarioModel Adicionar(UsuarioModel usuario)
         {
+            usuario.DataDeCadastro = DateTime.Now;
             _bancoDeDadosContext.TabelaUsuarios.Add(usuario);
             _bancoDeDadosContext.SaveChanges();
 
@@ -47,6 +48,8 @@ namespace Controle_de_Contatos.Repositorio
             usuarioDB.Name = usuario.Name;
             usuarioDB.Login = usuario.Login;
             usuarioDB.Email = usuario.Email;
+            usuarioDB.DataAtualizacao = DateTime.Now;//pegamos a data atual e jogamos para dentro da coluna
+            usuarioDB.Perfil = usuario.Perfil;
 
             _bancoDeDadosContext.TabelaUsuarios.Update(usuarioDB);
             _bancoDeDadosContext.SaveChanges();
