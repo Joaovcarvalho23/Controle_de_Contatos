@@ -1,14 +1,24 @@
 ﻿using Controle_de_Contatos.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Controle_de_Contatos.Models
 {
     public class UsuarioModel
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Digite o nome do usuário")]
         public string? Name { get; set; }
+
+        [Required(ErrorMessage = "Digite o e-mail do usuário")]
+        [EmailAddress(ErrorMessage = "O formato de e-mail informado não é válido!")]
         public string? Email { get; set; }
+
+        [Required(ErrorMessage = "Digite o e-mail do usuário")]
         public string? Login { get; set;}
         public PerfilEnum Perfil { get; set; }
+
+        [Required(ErrorMessage = "Digite a senha do usuário")]
         public string? Senha { get; set;}
         public DateTime DataDeCadastro { get; set; }
         public DateTime? DataAtualizacao { get; set; }
