@@ -49,8 +49,27 @@ namespace Controle_de_Contatos.Controllers
                 TempData["MensagemFalha"] = $"Ocorreu um erro ao criar este usuário. Detalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
-            {
+        }
 
+
+        public IActionResult ExcluirUsuarioConfirmacao(int id)
+        {
+            UsuarioModel usuario = _usuarioRepositorio.BuscarPorId(id);
+            return View(usuario);
+        }
+
+        public IActionResult ExcluirUsuario(int id)
+        {
+            try
+            {
+                _usuarioRepositorio.Deletar(id);
+                TempData["MensagemSucesso"] = "Usuário excluído com sucesso!";
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                TempData["MensagemFalha"] = $"Ocorreu um erro ao excluir o usuário. Detalhe do erro: {e.Message}";
+                return RedirectToAction("Index");
             }
         }
     }
