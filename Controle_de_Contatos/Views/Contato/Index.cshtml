@@ -29,11 +29,11 @@
     <table class="table" id="table-contatos">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Email</th>
-                <th scope="col">Celular</th>
-                <th scope="col">Ações</th>
+                <th scope="col" class="text-center">Id</th>
+                <th scope="col" class="text-center">Nome</th>
+                <th scope="col" class="text-center">Email</th>
+                <th scope="col" class="text-center">Celular</th>
+                <th scope="col" class="text-center">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -42,11 +42,11 @@
                 foreach(ContatoModel contato in Model)
                 {
                     <tr>
-                        <th scope="row">@contato.Id</th>
-                        <td>@contato.Name</td>
-                        <td>@contato.Email</td>
-                        <td>@contato.Celular</td>
-                        <td>
+                        <th scope="row" class="text-center">@contato.Id</th>
+                        <td class="text-center">@contato.Name</td>
+                        <td class="text-center">@contato.Email</td>
+                        <td class="text-center">@contato.Celular</td>
+                        <td class="text-center">
                             <div class="btn-group" role="group">
                                 <a role="button" class="btn btn-warning" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="EditarContato">Editar</a>
                                 <a role="button" class="btn btn-danger" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="ExcluirContatoConfirmacao">Excluir</a>
