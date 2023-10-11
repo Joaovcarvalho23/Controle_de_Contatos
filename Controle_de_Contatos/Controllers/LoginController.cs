@@ -18,7 +18,11 @@ namespace Controle_de_Contatos.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    return RedirectToAction("Index", "Home");
+
+                    if(loginModel.Login == "adm" && loginModel.Senha == "123")
+                        return RedirectToAction("Index", "Home");
+
+                    TempData["MensagemFalha"] = $"Usuário e/ou senha inválido(s). Por favor, tente novamente.";
                 }
 
                 return View("Index");
