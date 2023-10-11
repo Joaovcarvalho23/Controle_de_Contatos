@@ -72,5 +72,15 @@ namespace Controle_de_Contatos.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+
+
+        public IActionResult EditarUsuario (int id)
+        {
+            UsuarioModel usuario = _usuarioRepositorio.BuscarPorId(id);
+            return View(usuario);
+        }
+
+
     }
 }
