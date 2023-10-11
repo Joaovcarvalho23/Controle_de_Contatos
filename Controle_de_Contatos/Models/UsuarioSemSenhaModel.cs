@@ -14,7 +14,7 @@ namespace Controle_de_Contatos.Models
         [EmailAddress(ErrorMessage = "O formato de e-mail informado não é válido!")]
         public string? Email { get; set; }
 
-        [Required(ErrorMessage = "Digite o e-mail do usuário")]
+        [Required(ErrorMessage = "Digite o login do usuário")]
         public string? Login { get; set;}
 
         [Required(ErrorMessage = "Informe o perfil do usuário!")]
