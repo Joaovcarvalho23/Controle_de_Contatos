@@ -86,7 +86,7 @@ namespace Controle_de_Contatos.Controllers
         {
             try
             {
-                UsuarioModel usuario = null;
+                UsuarioModel? usuario = null;
 
                 if (ModelState.IsValid)
                 {
@@ -110,7 +110,7 @@ namespace Controle_de_Contatos.Controllers
             }
             catch (Exception e)
             {
-                TempData["MensagemFalha"] = $"Ocorreu um erro ao editar o usuário. Detalhe do erro: {e.Message}";
+                TempData["MensagemFalha"] = $"Ocorreu um erro ao editar o usuário. Tente novamente. Detalhe do erro: {e.Message}";
                 return RedirectToAction("Index");
             }
         }
