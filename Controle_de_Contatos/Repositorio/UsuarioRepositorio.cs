@@ -43,7 +43,7 @@ namespace Controle_de_Contatos.Repositorio
         {
             UsuarioModel usuarioDB = BuscarPorId(usuario.Id);
 
-            if(usuarioDB != null) { throw new Exception("Ocorreu um erro ao atualizar o usuário"); }
+            if(usuarioDB == null) { throw new Exception("Ocorreu um erro ao atualizar o usuário"); }
 
             usuarioDB.Name = usuario.Name;
             usuarioDB.Login = usuario.Login;
