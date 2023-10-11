@@ -16,6 +16,8 @@ namespace Controle_de_Contatos.Models
 
         [Required(ErrorMessage = "Digite o e-mail do usuário")]
         public string? Login { get; set;}
+
+        [Required(ErrorMessage = "Informe o perfil do usuário!")]
         public PerfilEnum Perfil { get; set; }
 
         [Required(ErrorMessage = "Digite a senha do usuário")]
