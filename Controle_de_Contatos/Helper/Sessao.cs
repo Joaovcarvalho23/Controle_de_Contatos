@@ -1,6 +1,5 @@
 ﻿using Controle_de_Contatos.Models;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace Controle_de_Contatos.Helper
 {
