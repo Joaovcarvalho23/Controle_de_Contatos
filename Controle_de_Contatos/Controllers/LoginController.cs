@@ -27,6 +27,12 @@ namespace Controle_de_Contatos.Controllers
             return View();
         }
 
+        public IActionResult Sair()
+        {
+            _sessao.RemoverSessaoUsuario();
+
+            return RedirectToAction("Index", "Login");
+        }
 
         [HttpPost]
         public IActionResult Entrar(LoginModel loginModel)
