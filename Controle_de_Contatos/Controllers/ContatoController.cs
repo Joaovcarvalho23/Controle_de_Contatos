@@ -1,9 +1,11 @@
-﻿using Controle_de_Contatos.Models;
+﻿using Controle_de_Contatos.Filters;
+using Controle_de_Contatos.Models;
 using Controle_de_Contatos.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controle_de_Contatos.Controllers
 {
+    [PaginaUsuarioLogado] //adicionando o filtro que criamos dentro da nossa controller ContatoController
     public class ContatoController : Controller
     {
         private readonly IContatoRepositorio _contatoRepositorio;

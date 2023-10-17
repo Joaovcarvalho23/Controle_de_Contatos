@@ -1,9 +1,11 @@
-﻿using Controle_de_Contatos.Models;
+﻿using Controle_de_Contatos.Filters;
+using Controle_de_Contatos.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace Controle_de_Contatos.Controllers
 {
+    [PaginaUsuarioLogado] //adicionando o filtro que criamos dentro da nossa controller HomeController
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
