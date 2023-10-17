@@ -1,4 +1,5 @@
 using Controle_de_Contatos.Data;
+using Controle_de_Contatos.Helper;
 using Controle_de_Contatos.Repositorio;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,7 @@ namespace Controle_de_Contatos
             //Na linha 16, configuramos a injeção de dependência do contexto. Agora, precisamos configurar a injeção de dependência da Interface. Quando injetar a interface, quem deve resolver a classe de implementação? É feito abaixo:
             builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>();//toda vez que a IContatoRepositorio for chamada, queremos que resolva chamar ContatoRepositorio
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();//registrando interface e repositório do Usuário
+            builder.Services.AddScoped<ISessao, Sessao>();//registrando interface e classe da sessão do Usuário
 
             var app = builder.Build();
 
