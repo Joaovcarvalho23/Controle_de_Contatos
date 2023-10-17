@@ -17,7 +17,9 @@ namespace Controle_de_Contatos
                 .AddDbContext<BancoDeDadosContext>(
                     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
 
-            //Acima, configuramos a injeção de dependência do contexto. Agora, precisamos configurar a injeção de dependência da Interface. Quando injetar a interface, quem deve resolver a classe de implementação? É feito abaixo:
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//quando chamarmos a interface IHttpContextAcessor, ele vai implementar a classe do HttpContextAcessor
+
+            //Na linha 16, configuramos a injeção de dependência do contexto. Agora, precisamos configurar a injeção de dependência da Interface. Quando injetar a interface, quem deve resolver a classe de implementação? É feito abaixo:
             builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>();//toda vez que a IContatoRepositorio for chamada, queremos que resolva chamar ContatoRepositorio
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();//registrando interface e repositório do Usuário
 
