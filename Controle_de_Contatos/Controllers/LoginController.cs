@@ -1,4 +1,5 @@
-﻿using Controle_de_Contatos.Models;
+﻿using Controle_de_Contatos.Helper;
+using Controle_de_Contatos.Models;
 using Controle_de_Contatos.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,14 +9,21 @@ namespace Controle_de_Contatos.Controllers
     {
 
         private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly ISessao _sessao;
 
-        public LoginController(IUsuarioRepositorio usuarioRepositorio)
+        public LoginController(IUsuarioRepositorio usuarioRepositorio, ISessao sessao)
         {
             _usuarioRepositorio = usuarioRepositorio; //fazendo a injeção de independência
+            _sessao = sessao;
         }
 
         public IActionResult Index()
         {
+            //Se o usuáruio estiver logado, redirecionar para a home
+            if (_sessao.BuscarSessaoUsuario() != null)
+                return RedirectToAction("Index", "Home");
+
+
             return View();
         }
 
@@ -33,8 +41,11 @@ namespace Controle_de_Contatos.Controllers
                     {
                         if (usuario.SenhaValida(loginModel.Senha))
                         {
+                            _sessao.CriarSessaoUsuario(usuario);
                             return RedirectToAction("Index", "Home");
                         }
+
+
                         TempData["MensagemFalha"] = $"Senha incorreta. Por favor, tente novamente.";
 
                     }
