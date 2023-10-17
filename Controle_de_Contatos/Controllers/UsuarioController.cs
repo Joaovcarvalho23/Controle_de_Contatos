@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Controle_de_Contatos.Controllers
 {
-    [PaginaRestritaAdmin]
+    [PaginaUsuarioLogado] //adicionando o filtro que criamos dentro da nossa controller UsuarioController
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
