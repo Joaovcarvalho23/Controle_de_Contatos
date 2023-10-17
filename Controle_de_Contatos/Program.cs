@@ -25,6 +25,12 @@ namespace Controle_de_Contatos
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();//registrando interface e repositório do Usuário
             builder.Services.AddScoped<ISessao, Sessao>();//registrando interface e classe da sessão do Usuário
 
+            builder.Services.AddSession(o =>
+            {
+                o.Cookie.HttpOnly = true; //o cookie de sessão só pode ser acessado por meio de solicitações HTTP e não pode ser acessado por scripts no lado do cliente. Isso ajuda a proteger a sessão contra ataques XSS (Cross-Site Scripting).
+                o.Cookie.IsEssential = true; //usado para garantir que o cookie de sessão seja sempre enviado, mesmo se o usuário optar por não aceitar cookies.
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -37,6 +43,8 @@ namespace Controle_de_Contatos
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",
