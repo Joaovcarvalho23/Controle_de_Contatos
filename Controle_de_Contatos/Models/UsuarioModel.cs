@@ -28,7 +28,7 @@ namespace Controle_de_Contatos.Models
 
         public bool SenhaValida(string senha)
         {
-            return Senha == senha;
+            return Senha == senha.GerarHash();//chamamos o método de GerarHash na senha em que o usuário está digitando, pois no banco de dados, a senha cadastrada se transformou em hash. Com isso, devemos transformar também a senha que o usuário está digitando em hash. Se o hash criado for o mesmo que está cadastrado no banco de dados, o login é efetivado
         }
 
         public void SenhaHash()
