@@ -15,5 +15,7 @@ namespace Controle_de_Contatos.Repositorio
         bool Deletar(int id);
 
         UsuarioModel BuscarPorLogin(string login);
+
+        UsuarioModel BuscarPorEmailELogin(string email, string login);
     }
 }
