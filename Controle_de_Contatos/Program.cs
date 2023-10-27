@@ -24,6 +24,7 @@ namespace Controle_de_Contatos
             builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>();//toda vez que a IContatoRepositorio for chamada, queremos que resolva chamar ContatoRepositorio
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();//registrando interface e repositório do Usuário
             builder.Services.AddScoped<ISessao, Sessao>();//registrando interface e classe da sessão do Usuário
+            builder.Services.AddScoped<IEmail, Email>();
 
             builder.Services.AddSession(o =>
             {
