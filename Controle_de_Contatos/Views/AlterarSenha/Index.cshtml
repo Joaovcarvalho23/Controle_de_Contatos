@@ -1,0 +1,35 @@
+﻿@using Controle_de_Contatos.Enums;
+@model AlterarSenhaModel
+@{
+    ViewData["Title"] = "Alterar senha do usuário";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Alterar senha do usuário</h1>
+</div>
+
+<form asp-controller="AlterarSenha" asp-action="Alterar" method="post">
+
+
+    <div class="form-group">
+        <label for="senhaAtual" class="form-label">Senha atual</label>
+        <input type="text" asp-for="SenhaAtual" class="form-control" placeholder="Digite a senha atual do usuário">
+        @Html.ValidationMessageFor(o => o.SenhaAtual)
+    </div><br />
+
+    <div class="form-group">
+        <label for="novaSenha" class="form-label">Nova senha</label>
+        <input type="text" asp-for="NovaSenha" class="form-control" placeholder="Digite a nova senha do usuário">
+        @Html.ValidationMessageFor(o => o.NovaSenha)
+    </div><br />
+
+    <div class="form-group">
+        <label for="confirmarNovaSenha" class="form-label">Confirmar nova senha</label>
+        <input type="text" asp-for="ConfirmarNovaSenha" class="form-control" placeholder="Confirme a nova senha do usuário">
+        @Html.ValidationMessageFor(o => o.NovaSenha)
+    </div><br />
+
+
+    <button type="submit" class="btn btn-success col-12">Alterar</button><p></p>
+    <a class="btn btn-secondary col-12" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
+</form>
