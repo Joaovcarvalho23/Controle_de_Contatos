@@ -4,6 +4,22 @@
     ViewData["Title"] = "Alterar senha do usuário";
 }
 
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+@if (TempData["MensagemFalha"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
+        @TempData["MensagemFalha"]
+    </div>
+}
+
 <div class="text-center">
     <h1 class="display-4">Alterar senha do usuário</h1>
 </div>
@@ -13,20 +29,20 @@
 
     <div class="form-group">
         <label for="senhaAtual" class="form-label">Senha atual</label>
-        <input type="text" asp-for="SenhaAtual" class="form-control" placeholder="Digite a senha atual do usuário">
+        <input type="password" asp-for="SenhaAtual" class="form-control" placeholder="Digite a senha atual do usuário">
         @Html.ValidationMessageFor(o => o.SenhaAtual)
     </div><br />
 
     <div class="form-group">
         <label for="novaSenha" class="form-label">Nova senha</label>
-        <input type="text" asp-for="NovaSenha" class="form-control" placeholder="Digite a nova senha do usuário">
+        <input type="password" asp-for="NovaSenha" class="form-control" placeholder="Digite a nova senha do usuário">
         @Html.ValidationMessageFor(o => o.NovaSenha)
     </div><br />
 
     <div class="form-group">
         <label for="confirmarNovaSenha" class="form-label">Confirmar nova senha</label>
-        <input type="text" asp-for="ConfirmarNovaSenha" class="form-control" placeholder="Confirme a nova senha do usuário">
-        @Html.ValidationMessageFor(o => o.NovaSenha)
+        <input type="password" asp-for="ConfirmarNovaSenha" class="form-control" placeholder="Confirme a nova senha do usuário">
+        @Html.ValidationMessageFor(o => o.ConfirmarNovaSenha)
     </div><br />
 
 
