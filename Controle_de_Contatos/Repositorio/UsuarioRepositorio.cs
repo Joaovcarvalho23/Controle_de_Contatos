@@ -9,16 +9,22 @@ namespace Controle_de_Contatos.Repositorio
         
         public UsuarioRepositorio(BancoDeDadosContext bancoDeDadosContext) //construtor para fazermos a injeção 
         {
-            _bancoDeDadosContext = bancoDeDadosContext;
+            this._bancoDeDadosContext = bancoDeDadosContext;
         }
 
 
-        //métodos
-        public UsuarioModel BuscarPorId(int id)
+        //Métodos
+        public UsuarioModel BuscarPorLogin(string login)
         {
-            return _bancoDeDadosContext.TabelaUsuarios.FirstOrDefault(o => o.Id == id);
+            return _bancoDeDadosContext.TabelaUsuarios.FirstOrDefault(o => o.Login.ToUpper() == login.ToUpper());
         }
 
+
+        public UsuarioModel BuscarPorEmailELogin(string email, string login)
+        {
+            return _bancoDeDadosContext.TabelaUsuarios.FirstOrDefault(
+                o => o.Email.ToUpper() == email.ToUpper() && o.Login.ToUpper() == login.ToUpper());
+        }
 
 
         public List<UsuarioModel> BuscarTodosUsuarios()
@@ -26,6 +32,11 @@ namespace Controle_de_Contatos.Repositorio
             return _bancoDeDadosContext.TabelaUsuarios.ToList();
         }
 
+
+        public UsuarioModel BuscarPorId(int id)
+        {
+            return _bancoDeDadosContext.TabelaUsuarios.FirstOrDefault(o => o.Id == id);
+        }
 
         
         public UsuarioModel Adicionar(UsuarioModel usuario)
@@ -37,7 +48,6 @@ namespace Controle_de_Contatos.Repositorio
 
             return usuario;
         }
-
 
 
         public UsuarioModel Atualizar(UsuarioModel usuario)
@@ -59,7 +69,6 @@ namespace Controle_de_Contatos.Repositorio
 
         }
 
-
         
         public bool Deletar(int id)
         {
@@ -72,18 +81,6 @@ namespace Controle_de_Contatos.Repositorio
             _bancoDeDadosContext.SaveChanges();
 
             return true;
-        }
-
-        public UsuarioModel BuscarPorLogin(string login)
-        {
-            return _bancoDeDadosContext.TabelaUsuarios.FirstOrDefault(
-                o => o.Login.ToUpper() == login.ToUpper());
-        }
-
-        public UsuarioModel BuscarPorEmailELogin(string email, string login)
-        {
-            return _bancoDeDadosContext.TabelaUsuarios.FirstOrDefault(
-                o => o.Email.ToUpper() == email.ToUpper() && o.Login.ToUpper() == login.ToUpper());
         }
     }
 }

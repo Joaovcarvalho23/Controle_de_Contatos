@@ -2,6 +2,7 @@
 using Controle_de_Contatos.Models;
 using Controle_de_Contatos.Repositorio;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mail;
 
 namespace Controle_de_Contatos.Controllers
 {
@@ -114,6 +115,13 @@ namespace Controle_de_Contatos.Controllers
                 return View("Index");
 
             }
+            catch (SmtpException smtpEx)
+            {
+                // Trate as exceções específicas de SMTP aqui, registre informações detalhadas para depuração.
+                TempData["MensagemFalha"] = $"Erro SMTP: {smtpEx.Message}";
+                return RedirectToAction("Index");
+            }
+
             catch (Exception ex)
             {
                 TempData["MensagemFalha"] = $"Houve um erro ao tentar redefinir sua senha. Descrição do erro: {ex.Message}";
