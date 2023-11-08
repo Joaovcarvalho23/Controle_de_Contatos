@@ -1,4 +1,5 @@
 ﻿using Controle_de_Contatos.Filters;
+using Controle_de_Contatos.Helper;
 using Controle_de_Contatos.Models;
 using Controle_de_Contatos.Repositorio;
 using Microsoft.AspNetCore.Mvc;
@@ -9,17 +10,20 @@ namespace Controle_de_Contatos.Controllers
     public class ContatoController : Controller
     {
         private readonly IContatoRepositorio _contatoRepositorio;
+        private readonly ISessao _sessao;
 
 
-        public ContatoController(IContatoRepositorio contatoRepositorio)
+        public ContatoController(IContatoRepositorio contatoRepositorio, ISessao sessao)
         {
             _contatoRepositorio = contatoRepositorio; //fazendo injeção de dependêcia
+            _sessao = sessao;
         }
 
 
         public IActionResult Index()
         {
-            List<ContatoModel> contatos = _contatoRepositorio.BuscarTodosContatos();
+            UsuarioModel usuarioLogado = _sessao.BuscarSessaoUsuario();
+            List<ContatoModel> contatos = _contatoRepositorio.BuscarTodosContatos(usuarioLogado.Id);
 
             return View(contatos);
         }
@@ -37,6 +41,9 @@ namespace Controle_de_Contatos.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoUsuario();
+                    contato.UsuarioId = usuarioLogado.Id;
+
                     _contatoRepositorio.Adicionar(contato);
                     TempData["MensagemSucesso"] = "Contato cadastrado com sucesso!";
                     return RedirectToAction("Index");
@@ -66,12 +73,15 @@ namespace Controle_de_Contatos.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _contatoRepositorio.Atualizar(contato);
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoUsuario();
+                    contato.UsuarioId = usuarioLogado.Id;
+
+                    contato = _contatoRepositorio.Atualizar(contato);
                     TempData["MensagemSucesso"] = "Contato aletrado com sucesso!";
                     return RedirectToAction("Index");
                 }
 
-                return View("EditarContato", contato);
+                return View(contato);
             }
             catch (Exception ex)
             {
