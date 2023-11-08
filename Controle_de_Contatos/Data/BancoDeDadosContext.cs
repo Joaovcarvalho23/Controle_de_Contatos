@@ -1,4 +1,5 @@
-﻿using Controle_de_Contatos.Models;
+﻿using Controle_de_Contatos.Data.Map;
+using Controle_de_Contatos.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Controle_de_Contatos.Data
@@ -13,5 +14,12 @@ namespace Controle_de_Contatos.Data
         public DbSet<ContatoModel> TabelaContatos { get; set; }
 
         public DbSet<UsuarioModel> TabelaUsuarios {  get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ContatoMap());
+
+            base.OnModelCreating(modelBuilder);
+        } //estamos configurando a nossa ContatoMap e depois passando para a classe base as nossas configurações, usando o código da herança + a configuração que foi feita
     }
 }
