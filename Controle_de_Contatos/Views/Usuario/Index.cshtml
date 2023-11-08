@@ -34,6 +34,7 @@
                 <th scope="col" class="text-center">Login</th>
                 <th scope="col" class="text-center">Email</th>
                 <th scope="col" class="text-center">Perfil</th>
+                <th scope="col" class="text-center">Total de contatos</th>
                 <th scope="col" class="text-center">Data de cadastro</th>
                 <th scope="col" class="text-center">Ações</th>
             </tr>
@@ -49,6 +50,12 @@
                         <td class="text-center">@usuario.Login</td>
                         <td class="text-center">@usuario.Email</td>
                         <td class="text-center">@(usuario.Perfil == Controle_de_Contatos.Enums.PerfilEnum.Admin ? "Administrador" : "Padrão")</td>
+                        <td class="text-center">
+                            <a href="#" class="btn btn-success btn-sm btn-total-contatos" data-bs-toggle="modal" data-bs-target="#modalContatosUsuario">
+                                @(usuario.Contatos != null && usuario.Contatos.Any() ? usuario.Contatos.Count() : 0)
+                            </a>
+
+                        </td>
                         <td class="text-center">@usuario.DataDeCadastro</td>
                         <td class="text-center">
                             <div class="btn-group" role="group">
@@ -71,6 +78,44 @@
             }
         </tbody>
     </table>
+
+    <div id="modalContatosUsuario" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Listagem de contatos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <table class="display" id="table-contatos" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">Id</th>
+                                <th scope="col" class="text-center">Nome</th>
+                                <th scope="col" class="text-center">Email</th>
+                                <th scope="col" class="text-center">Celular</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                
+                                <th scope="row" class="text-center">1</th>
+                                <td class="text-center">teste</td>
+                                <td class="text-center">teste@gmail.com</td>
+                                <td class="text-center">99999999</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div class="d-grip gap-2 d-md-flex justify-content-md-start">
