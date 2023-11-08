@@ -36,6 +36,11 @@ namespace Controle_de_Contatos.Models
             Senha = Senha.GerarHash(); //o this criado no método GerarHash serve justamente para nos deixar usar esse método. Se torna um método de extensão
         }
 
+        public void SetNovaSenha(string novaSenha)
+        {
+            Senha = novaSenha.GerarHash();
+        }
+
         public string GerarNovaSenha()
         {
             string novaSenha = Guid.NewGuid().ToString().Substring(0, 8); //pegamos apenas os 8 primeiros caracteres
