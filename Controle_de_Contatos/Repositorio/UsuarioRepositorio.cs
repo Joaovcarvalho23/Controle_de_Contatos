@@ -1,5 +1,6 @@
 ﻿using Controle_de_Contatos.Data;
 using Controle_de_Contatos.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Controle_de_Contatos.Repositorio
 {
@@ -29,7 +30,9 @@ namespace Controle_de_Contatos.Repositorio
 
         public List<UsuarioModel> BuscarTodosUsuarios()
         {
-            return _bancoDeDadosContext.TabelaUsuarios.ToList();
+            return _bancoDeDadosContext.TabelaUsuarios
+                .Include(x => x.Contatos)
+                .ToList();
         }
 
 
