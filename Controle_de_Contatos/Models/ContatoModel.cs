@@ -16,5 +16,7 @@ namespace Controle_de_Contatos.Models
         [Required(ErrorMessage = "Por favor, informe o celular do contato")]
         [Phone(ErrorMessage = "Formato do celular está incorreto!")]
         public string? Celular { get; set;}
+
+        public int? UsuarioId { get; set; }
     }
 }
