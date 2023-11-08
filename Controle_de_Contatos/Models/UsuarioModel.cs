@@ -26,6 +26,8 @@ namespace Controle_de_Contatos.Models
         public DateTime DataDeCadastro { get; set; }
         public DateTime? DataAtualizacao { get; set; }
 
+        public virtual List<ContatoModel>? Contatos { get; set; }  //criamos a coluna "UsuarioId". Ou seja, um contato é amarrado a um usuário. Porém, a partir do momento que temos um relacionamento com a tabela 'Contato', ela passa a ter uma lista. Um usuário tem x contatos. 
+
         public bool SenhaValida(string senha)
         {
             return Senha == senha.GerarHash();//chamamos o método de GerarHash na senha em que o usuário está digitando, pois no banco de dados, a senha cadastrada se transformou em hash. Com isso, devemos transformar também a senha que o usuário está digitando em hash. Se o hash criado for o mesmo que está cadastrado no banco de dados, o login é efetivado
