@@ -18,5 +18,7 @@ namespace Controle_de_Contatos.Models
         public string? Celular { get; set;}
 
         public int? UsuarioId { get; set; }
+
+        public UsuarioModel? Usuario { get; set; } //chamando o objeto Usuario como agregado dessa tabela
     }
 }
