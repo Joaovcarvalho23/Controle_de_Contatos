@@ -8,6 +8,10 @@ $(document).ready(function () {
 
     getDataTable('#table-contatos');
     getDataTable('#table-usuarios');
+
+    $('.btn-total-contatos').click(function () {
+        $('#modalContatosUsuario').modal();
+    });
 })
 
 
