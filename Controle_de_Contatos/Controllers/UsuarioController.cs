@@ -9,19 +9,29 @@ namespace Controle_de_Contatos.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly IContatoRepositorio _contatoRepositorio;
 
-        public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
+        public UsuarioController(IUsuarioRepositorio usuarioRepositorio, IContatoRepositorio contatoRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio; //fazendo injeção de dependêcia
+            _contatoRepositorio = contatoRepositorio;
         }
 
 
         public IActionResult Index()
         {
             List<UsuarioModel> usuarios = _usuarioRepositorio.BuscarTodosUsuarios();
-
             return View(usuarios);
         }
+
+
+
+        public IActionResult ListarContatosPorUsuarioId(int id)
+        {
+            List<ContatoModel> contatos = _contatoRepositorio.BuscarTodosContatos(id);
+
+            return PartialView("_ContatosUsuario", contatos);
+        } //quando a nossa requisição ajax bater nesse método, esse método vai buscar os contatos lá no banco de dados, vai retornar uma PartialView (um pequeno código html) e vai retornar para o nosso JS já com os dados preenchidos desse contato. Continua explicação lá no site.js...
 
 
 
@@ -29,6 +39,8 @@ namespace Controle_de_Contatos.Controllers
         {
             return View();
         }
+
+
 
         [HttpPost]
         public IActionResult CriarUsuario(UsuarioModel usuario)
@@ -52,6 +64,7 @@ namespace Controle_de_Contatos.Controllers
                 return RedirectToAction("Index");
             }
         }
+
 
 
         public IActionResult ExcluirUsuarioConfirmacao(int id)
@@ -82,6 +95,8 @@ namespace Controle_de_Contatos.Controllers
             UsuarioModel usuario = _usuarioRepositorio.BuscarPorId(id);
             return View(usuario);
         }
+
+
 
         [HttpPost]
         public IActionResult EditarUsuario (UsuarioSemSenhaModel usuarioSemSenha)
