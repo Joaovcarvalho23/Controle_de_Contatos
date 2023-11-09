@@ -51,7 +51,7 @@
                         <td class="text-center">@usuario.Email</td>
                         <td class="text-center">@(usuario.Perfil == Controle_de_Contatos.Enums.PerfilEnum.Admin ? "Administrador" : "Padrão")</td>
                         <td class="text-center">
-                            <a href="#" class="btn btn-success btn-sm btn-total-contatos" data-bs-toggle="modal" data-bs-target="#modalContatosUsuario">
+                            <a href="#"  usuario-id="@usuario.Id" class="btn btn-success btn-sm btn-total-contatos" data-bs-toggle="modal" data-bs-target="#modalContatosUsuario">
                                 @(usuario.Contatos != null && usuario.Contatos.Any() ? usuario.Contatos.Count() : 0)
                             </a>
 
