@@ -10,6 +10,8 @@ $(document).ready(function () {
     getDataTable('#table-usuarios');
 
     $('.btn-total-contatos').click(function () {
+        var usuarioId = $(this).attr('usuario-id');
+        //console.log(usuarioId);
         $('#modalContatosUsuario').modal();
     });
 })
