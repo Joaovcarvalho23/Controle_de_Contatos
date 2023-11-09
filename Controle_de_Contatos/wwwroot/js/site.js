@@ -12,7 +12,18 @@ $(document).ready(function () {
     $('.btn-total-contatos').click(function () {
         var usuarioId = $(this).attr('usuario-id');
         //console.log(usuarioId);
-        $('#modalContatosUsuario').modal();
+
+        //fazendo requisição ajax
+        $.ajax({
+            type: 'GET',
+            url: '/Usuario/ListarContatosPorUsuarioId/' + usuarioId,
+            success: function (result) {
+                $('#listaContatosUsuario').html(result);
+                $('#modalContatosUsuario').modal();
+                getDataTable('#table-contatos-usuario')
+            } //Continuando a explicação do método ListarContatosPorUsuarioId em UsuarioController.cs...
+            // aqui no JS, pegamos esse código html junto com todos os dados montados em tela e joga, via javascript, para dentro dessa div listaContatosUsuario. Assim, aparecerá automaticamente
+        });
     });
 })
 
