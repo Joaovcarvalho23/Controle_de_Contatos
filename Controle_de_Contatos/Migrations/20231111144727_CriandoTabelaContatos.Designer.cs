@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Controle_de_Contatos.Migrations
 {
     [DbContext(typeof(BancoDeDadosContext))]
-    [Migration("20231108122550_CriandoVinculoUsuarioNaContato")]
-    partial class CriandoVinculoUsuarioNaContato
+    [Migration("20231111144727_CriandoTabelaContatos")]
+    partial class CriandoTabelaContatos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
